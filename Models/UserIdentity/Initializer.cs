@@ -10,10 +10,6 @@ namespace Models.UserIdentity
     {
         public static async Task InitializeAsync(UserManager<User> userManager, RoleManager<Role> roleManager)
         {
-            const string userName = "admin";
-            const string email = "admin@lapkisoft.me";
-            const string password = "qwe123";
-            const string phoneNumber = "8-800-000-00-00";
             const string adminRole = "admin";
             const string userRole = "user";
             const string medicRole = "medic";
@@ -41,24 +37,36 @@ namespace Models.UserIdentity
                 await roleManager.CreateAsync(new Role(dispatcherRole));
             }
 
-            var dateTime = DateTime.UtcNow;
+            await RegisterUser(userManager, adminRole);
+            await RegisterUser(userManager, medicRole);
+            await RegisterUser(userManager, mechanicRole);
+            await RegisterUser(userManager, dispatcherRole);
+        }
 
-            if (await userManager.FindByNameAsync(userName) == null)
+        private static async Task RegisterUser(UserManager<User> userManager, string userRole)
+        {
+            const string email = "@lapkisoft.me";
+            const string password = "qwe123";
+            const string phoneNumber = "8-800-000-00-00";
+            
+            if (await userManager.FindByNameAsync(userRole) == null)
             {
-                var admin = new User
+                var dateTime = DateTime.UtcNow;
+                
+                var user = new User
                 {
-                    UserName = userName,
-                    Email = email,
+                    UserName = userRole,
+                    Email = $"{userRole}{email}",
                     PhoneNumber = phoneNumber,
                     RegisteredAt = dateTime,
                     LastUpdateAt = dateTime
                 };
 
-                var result = await userManager.CreateAsync(admin, password);
+                var result = await userManager.CreateAsync(user, password);
                 
                 if (result.Succeeded)
                 {
-                    await userManager.AddToRoleAsync(admin, "admin");
+                    await userManager.AddToRoleAsync(user, userRole);
                 }
             }
         }
