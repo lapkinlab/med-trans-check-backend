@@ -6,17 +6,17 @@ namespace ModelConverters.Checkpoints
 {
     public static class CheckpointConverter
     {
-        public static Client.Checkpoint Convert(Model.Checkpoint modelDriver)
+        public static Client.Checkpoint Convert(Model.Checkpoint modelCheckpoint)
         {
-            if (modelDriver == null)
+            if (modelCheckpoint == null)
             {
-                throw new ArgumentNullException(nameof(modelDriver));
+                throw new ArgumentNullException(nameof(modelCheckpoint));
             }
 
             var clientCheckpoint = new Client.Checkpoint
             {
-                Id = modelDriver.Id.ToString(), 
-                Name = modelDriver.Name
+                Id = modelCheckpoint.Id.ToString(), 
+                Name = modelCheckpoint.Name
             };
             
             return clientCheckpoint;

@@ -12,6 +12,7 @@ using Models.Drivers.Repositories;
 using Models.Vehicles.Repositories;
 using Models.Tags.Repositories;
 using Models.Roles;
+using Models.Routes.Repositories;
 using Models.Users;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -30,6 +31,7 @@ namespace API
             services.AddSingleton<IVehicleRepository, MongoVehicleRepository>();
             services.AddSingleton<IDriverRepository, MongoDriverRepository>();
             services.AddSingleton<ICheckpointRepository, MongoCheckpointRepository>();
+            services.AddSingleton<IRouteRepository, MongoRouteRepository>();
 
             services.Configure<IdentityOptions>(options =>
             {
