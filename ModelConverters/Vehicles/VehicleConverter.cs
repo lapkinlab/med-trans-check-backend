@@ -13,14 +13,14 @@ namespace ModelConverters.Vehicles
                 throw new ArgumentNullException(nameof(modelVehicle));
             }
 
-            var clientTag = new Client.Vehicle
+            var clientDriver = new Client.Vehicle
             {
                 Id = modelVehicle.Id.ToString(), 
                 Mark = modelVehicle.Mark,
                 GovNumber = modelVehicle.GovNumber
             };
             
-            return clientTag;
+            return clientDriver;
         }
     }
 }
