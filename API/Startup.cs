@@ -1,10 +1,15 @@
 using System;
+using System.Threading.Tasks;
+using AspNetCore.Identity.Mongo;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Models.Tags.Repositories;
+using Models.Roles;
+using Models.Users;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace API
@@ -20,6 +25,26 @@ namespace API
         {
             services.AddSingleton<ITagRepository, MongoTagRepository>();
 
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+            });
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.SlidingExpiration = true;
+                options.Events.OnRedirectToLogin = context =>
+                {
+                    context.Response.Headers["Location"] = context.RedirectUri;
+                    context.Response.StatusCode = 401;
+                    return Task.CompletedTask;
+                };
+            });
+            services.AddIdentityMongoDbProvider<User, Role>(mongo =>
+                mongo.ConnectionString = "mongodb://localhost:27017/MedTransCheckDb");
+            
             // Any CORS permission
             services.Configure<MvcOptions>(options =>
             {

@@ -62,5 +62,53 @@ namespace API.Services
 
             return error;
         }
+        
+        public static ServiceErrorResponse InvalidCredentialsError(string target)
+        {
+            var error = new ServiceErrorResponse
+            {
+                StatusCode = HttpStatusCode.BadRequest,
+                Error = new ServiceError
+                {
+                    Code = ServiceErrorCodes.InvalidCredentials,
+                    Message = "Username or password is incorrect.",
+                    Target = target
+                }
+            };
+
+            return error;
+        }
+        
+        public static ServiceErrorResponse ValidationError(string target, string message)
+        {
+            var error = new ServiceErrorResponse
+            {
+                StatusCode = HttpStatusCode.BadRequest,
+                Error = new ServiceError
+                {
+                    Code = ServiceErrorCodes.ValidationError,
+                    Message = message,
+                    Target = target
+                }
+            };
+
+            return error;
+        }
+        
+        public static ServiceErrorResponse UnauthorizedError(string target)
+        {
+            var error = new ServiceErrorResponse
+            {
+                StatusCode = HttpStatusCode.BadRequest,
+                Error = new ServiceError
+                {
+                    Code = ServiceErrorCodes.Unauthorized,
+                    Message = "You must be authorized. Access prohibited.",
+                    Target = target
+                }
+            };
+
+            return error;
+        }
     }
 }

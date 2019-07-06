@@ -7,5 +7,6 @@ namespace ClientModels.Errors
         public const string Unauthorized = "auth:unauthorized";
         public const string InvalidCredentials = "auth:invalid-credentials";
         public const string BadRequest = "bad-request";
+        public const string ValidationError = "validation:error";
     }
 }
