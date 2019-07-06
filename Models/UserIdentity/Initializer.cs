@@ -14,14 +14,31 @@ namespace Models.UserIdentity
             const string email = "admin@lapkisoft.me";
             const string password = "qwe123";
             const string phoneNumber = "8-800-000-00-00";
+            const string adminRole = "admin";
+            const string userRole = "user";
+            const string medicRole = "medic";
+            const string mechanicRole = "mechanic";
+            const string dispatcherRole = "dispatcher";
 
-            if (await roleManager.FindByNameAsync("admin") == null)
+            if (await roleManager.FindByNameAsync(adminRole) == null)
             {
-                await roleManager.CreateAsync(new Role("admin"));
+                await roleManager.CreateAsync(new Role(adminRole));
             }
-            if (await roleManager.FindByNameAsync("user") == null)
+            if (await roleManager.FindByNameAsync(userRole) == null)
             {
-                await roleManager.CreateAsync(new Role("user"));
+                await roleManager.CreateAsync(new Role(userRole));
+            }
+            if (await roleManager.FindByNameAsync(medicRole) == null)
+            {
+                await roleManager.CreateAsync(new Role(medicRole));
+            }
+            if (await roleManager.FindByNameAsync(mechanicRole) == null)
+            {
+                await roleManager.CreateAsync(new Role(mechanicRole));
+            }
+            if (await roleManager.FindByNameAsync(dispatcherRole) == null)
+            {
+                await roleManager.CreateAsync(new Role(dispatcherRole));
             }
 
             var dateTime = DateTime.UtcNow;
