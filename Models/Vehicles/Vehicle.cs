@@ -2,9 +2,9 @@ using System;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Models.Drivers
+namespace Models.Vehicles
 {
-    public class Driver
+    public class Vehicle
     {
         [BsonId]
         [BsonRepresentation(BsonType.String)]

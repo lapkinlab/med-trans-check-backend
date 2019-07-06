@@ -1,6 +1,6 @@
-namespace ClientModels.Drivers
+namespace ClientModels.Vehicles
 {
-    public class Driver
+    public class Vehicle
     {
         public string Id { get; set; }
         public string Mark { get; set; }

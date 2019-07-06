@@ -1,8 +1,8 @@
 using System.Runtime.Serialization;
 
-namespace ClientModels.Drivers
+namespace ClientModels.Vehicles
 {
-    public class DriverCreationInfo
+    public class VehicleCreationInfo
     {
         [DataMember(IsRequired = true)]
         public string Mark { get; set; }
