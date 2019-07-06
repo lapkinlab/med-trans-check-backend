@@ -219,6 +219,13 @@ namespace API.Controllers
             return Ok(clientWayBillList);
         }
         
+        /// <summary>
+        /// Deletes waybill
+        /// </summary>
+        /// <param name="id">Waybill id</param>
+        /// <param name="cancellationToken"></param>
+        [HttpDelete]
+        [Route("{id}")]
         public async Task<IActionResult> DeleteWayBillAsync([FromRoute]string id, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
