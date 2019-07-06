@@ -63,6 +63,22 @@ namespace API.Services
             return error;
         }
         
+        public static ServiceErrorResponse InvalidBodyData(string target, string message)
+        {
+            var error = new ServiceErrorResponse
+            {
+                StatusCode = HttpStatusCode.BadRequest,
+                Error = new ServiceError
+                {
+                    Code = ServiceErrorCodes.BadRequest,
+                    Message = message,
+                    Target = target
+                }
+            };
+
+            return error;
+        }
+        
         public static ServiceErrorResponse InvalidCredentialsError(string target)
         {
             var error = new ServiceErrorResponse

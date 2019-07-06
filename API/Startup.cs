@@ -16,6 +16,7 @@ using Models.Tags.Repositories;
 using Models.Roles;
 using Models.Routes.Repositories;
 using Models.Users;
+using Models.WayBills.Repositories;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace API
@@ -36,6 +37,7 @@ namespace API
             services.AddSingleton<IRouteRepository, MongoRouteRepository>();
             services.AddSingleton<IMedicNoteRepository, MongoMedicNoteRepository>();
             services.AddSingleton<IMechanicNoteRepository, MongoMechanicNoteRepository>();
+            services.AddSingleton<IWayBillRepository, MongoWayBillRepository>();
 
             services.Configure<IdentityOptions>(options =>
             {

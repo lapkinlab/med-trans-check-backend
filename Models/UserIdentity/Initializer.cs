@@ -56,6 +56,7 @@ namespace Models.UserIdentity
                 var user = new User
                 {
                     UserName = userRole,
+                    Name = string.Empty,
                     Email = $"{userRole}{email}",
                     PhoneNumber = phoneNumber,
                     RegisteredAt = dateTime,

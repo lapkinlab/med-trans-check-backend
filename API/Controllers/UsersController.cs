@@ -220,7 +220,7 @@ namespace API.Controllers
             if (user == null)
             {
                 var error = ErrorResponsesService.NotFoundError(Target, $"User with name '{userName}' not found.");
-                return BadRequest(error);
+                return NotFound(error);
             }
 
             var updated = false;

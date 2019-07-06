@@ -58,7 +58,7 @@ namespace API.Controllers
             if (!Guid.TryParse(id, out var guid))
             {
                 var error = ErrorResponsesService.NotFoundError(Target, $"MedicNote with id '{id}' not found.");
-                return BadRequest(error);
+                return NotFound(error);
             }
 
             Model.MedicNote modelMedicNote;
@@ -101,7 +101,7 @@ namespace API.Controllers
             if (!Guid.TryParse(id, out var guid))
             {
                 var error = ErrorResponsesService.NotFoundError(Target, $"MedicNote with id '{id}' not found.");
-                return BadRequest(error);
+                return NotFound(error);
             }
 
             var userName = HttpContext.User.Identity.Name;
@@ -140,7 +140,7 @@ namespace API.Controllers
             if (!Guid.TryParse(id, out var guid))
             {
                 var error = ErrorResponsesService.NotFoundError(Target, $"MedicNote with id '{id}' not found.");
-                return BadRequest(error);
+                return NotFound(error);
             }
 
             try

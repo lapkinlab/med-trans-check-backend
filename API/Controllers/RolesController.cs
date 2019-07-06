@@ -85,7 +85,7 @@ namespace API.Controllers
             if (user == null)
             {
                 var error = ErrorResponsesService.NotFoundError(TargetUser, $"User with name '{userName}' not found.");
-                return BadRequest(error);
+                return NotFound(error);
             }
 
             var modelRolePatchInfo = Converter.RolePatchInfoConverter.Convert(userName, clientRolePatchInfo);
@@ -94,7 +94,7 @@ namespace API.Controllers
             if (modelRole == null)
             {
                 var error = ErrorResponsesService.NotFoundError(TargetRole, $"Role with name '{modelRolePatchInfo.UserRole}' not found.");
-                return BadRequest(error);
+                return NotFound(error);
             }
 
             if (user.Roles.Contains(modelRolePatchInfo.UserRole.ToUpper()))

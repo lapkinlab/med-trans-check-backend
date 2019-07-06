@@ -112,7 +112,7 @@ namespace API.Controllers
             if (!Guid.TryParse(id, out var guid))
             {
                 var error = ErrorResponsesService.NotFoundError(Target, $"Checkpoint with id '{id}' not found.");
-                return BadRequest(error);
+                return NotFound(error);
             }
 
             try
