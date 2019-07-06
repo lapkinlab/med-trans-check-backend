@@ -57,7 +57,18 @@ namespace API.Controllers
                 return BadRequest(error);
             }
 
-            var modelCreationInfo = Converter.UserCreationInfoConverter.Convert(clientUserCreationInfo);
+            UserCreationInfo modelCreationInfo;
+            
+            try
+            {
+                modelCreationInfo = Converter.UserCreationInfoConverter.Convert(clientUserCreationInfo);
+            }
+            catch (ArgumentNullException ex)
+            {
+                var error = ErrorResponsesService.InvalidCredentialsError(ex.Message);
+                return BadRequest(error);
+            }
+            
             var user = await userManager.FindByNameAsync(modelCreationInfo.UserName);
 
             if (user != null)
@@ -70,10 +81,11 @@ namespace API.Controllers
             var modelUser = new User
             {
                 UserName = modelCreationInfo.UserName,
+                Name = modelCreationInfo.Name,
                 Email = modelCreationInfo.Email,
                 PhoneNumber = modelCreationInfo.PhoneNumber,
                 RegisteredAt = dateTime,
-                LastUpdatedAt = dateTime
+                LastUpdateAt = dateTime
             };
 
             var result = await userManager.CreateAsync(modelUser, modelCreationInfo.Password);
@@ -118,7 +130,7 @@ namespace API.Controllers
                 users = users.Take(modelSearchInfo.Limit.Value);
             }
 
-            users = users.OrderByDescending(item => item.LastUpdatedAt);
+            users = users.OrderByDescending(item => item.LastUpdateAt);
 
             var clientUsers = users.Select(user => Converter.UserConverter.Convert(user));
             return Ok(clientUsers);
@@ -247,7 +259,7 @@ namespace API.Controllers
 
             if (updated)
             {
-                user.LastUpdatedAt = DateTime.UtcNow;
+                user.LastUpdateAt = DateTime.UtcNow;
                 await userManager.UpdateAsync(user);
             }
 

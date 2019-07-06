@@ -7,6 +7,9 @@ namespace ClientModels.Users
     {
         [DataMember(IsRequired = true)]
         public string UserName { get; set; }
+        
+        [DataMember(IsRequired = true)]
+        public string Name { get; set; }
 
         [DataMember(IsRequired = true)]
         [DataType(DataType.EmailAddress)]

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Models.Checkpoints.Repositories;
 using Models.Drivers.Repositories;
+using Models.MedicNotes.Repositories;
 using Models.Vehicles.Repositories;
 using Models.Tags.Repositories;
 using Models.Roles;
@@ -32,6 +33,7 @@ namespace API
             services.AddSingleton<IDriverRepository, MongoDriverRepository>();
             services.AddSingleton<ICheckpointRepository, MongoCheckpointRepository>();
             services.AddSingleton<IRouteRepository, MongoRouteRepository>();
+            services.AddSingleton<IMedicNoteRepository, MongoMedicNoteRepository>();
 
             services.Configure<IdentityOptions>(options =>
             {

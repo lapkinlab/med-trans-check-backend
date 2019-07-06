@@ -51,7 +51,7 @@ namespace Models.UserIdentity
                     Email = email,
                     PhoneNumber = phoneNumber,
                     RegisteredAt = dateTime,
-                    LastUpdatedAt = dateTime
+                    LastUpdateAt = dateTime
                 };
 
                 var result = await userManager.CreateAsync(admin, password);

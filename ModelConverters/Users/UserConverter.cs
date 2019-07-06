@@ -17,11 +17,12 @@ namespace ModelConverters.Users
             {
                 Id = modelUser.Id,
                 UserName = modelUser.NormalizedUserName,
+                Name = modelUser.Name,
                 Email = modelUser.Email,
                 PhoneNumber = modelUser.PhoneNumber,
                 Roles = modelUser.Roles,
                 RegisteredAt = modelUser.RegisteredAt,
-                LastUpdateddAt = modelUser.LastUpdatedAt
+                LastUpdateAt = modelUser.LastUpdateAt
             };
 
             return clientUser;
