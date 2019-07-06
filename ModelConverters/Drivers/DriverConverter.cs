@@ -13,7 +13,7 @@ namespace ModelConverters.Drivers
                 throw new ArgumentNullException(nameof(modelDriver));
             }
 
-            var clientTag = new Client.Driver
+            var clientCheckpoint = new Client.Driver
             {
                 Id = modelDriver.Id.ToString(), 
                 Name = modelDriver.Name,
@@ -21,7 +21,7 @@ namespace ModelConverters.Drivers
                 PhoneNumber = modelDriver.PhoneNumber
             };
             
-            return clientTag;
+            return clientCheckpoint;
         }
     }
 }

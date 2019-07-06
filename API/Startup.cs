@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.Extensions.DependencyInjection;
+using Models.Checkpoints.Repositories;
 using Models.Drivers.Repositories;
 using Models.Vehicles.Repositories;
 using Models.Tags.Repositories;
@@ -28,6 +29,7 @@ namespace API
             services.AddSingleton<ITagRepository, MongoTagRepository>();
             services.AddSingleton<IVehicleRepository, MongoVehicleRepository>();
             services.AddSingleton<IDriverRepository, MongoDriverRepository>();
+            services.AddSingleton<ICheckpointRepository, MongoCheckpointRepository>();
 
             services.Configure<IdentityOptions>(options =>
             {

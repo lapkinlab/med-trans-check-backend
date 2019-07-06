@@ -78,7 +78,7 @@ namespace API.Controllers
 
             if (!Guid.TryParse(id, out var guid))
             {
-                var error = ErrorResponsesService.NotFoundError(Target, $"driver with id '{id}' not found.");
+                var error = ErrorResponsesService.NotFoundError(Target, $"Driver with id '{id}' not found.");
                 return BadRequest(error);
             }
 
