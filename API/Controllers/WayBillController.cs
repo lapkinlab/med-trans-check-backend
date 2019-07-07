@@ -214,6 +214,7 @@ namespace API.Controllers
                     return WayBillConverter.Convert(item, clientDriver, clientVehicle, clientRoute, clientMechanicNote,
                         clientMedicNotes);
                 })
+                .Select(item => item.Result)
                 .ToImmutableList();
 
             return Ok(clientWayBillList);
