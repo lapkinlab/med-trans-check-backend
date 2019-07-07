@@ -46,6 +46,11 @@ namespace API.Controllers
             this.mechanicNoteRepository = mechanicNoteRepository ?? throw new ArgumentNullException(nameof(mechanicNoteRepository));
         }
         
+        /// <summary>
+        /// Creates waybill
+        /// </summary>
+        /// <param name="creationInfo">Waybill creation info</param>
+        /// <param name="cancellationToken"></param>
         [HttpPost]
         [Route("")]
         public async Task<IActionResult> CreateWayBillAsync([FromBody]Client.WayBillCreationInfo creationInfo,
@@ -129,6 +134,11 @@ namespace API.Controllers
             return CreatedAtRoute("GetWayBillRoute", new {id = clientWayBill.Id}, clientWayBill);
         }
         
+        /// <summary>
+        /// Returns a waybill by id
+        /// </summary>
+        /// <param name="id">Waybill id</param>
+        /// <param name="cancellationToken"></param>
         [HttpGet]
         [Route("{id}", Name = "GetWayBillRoute")]
         public async Task<IActionResult> GetWayBillAsync([FromRoute] string id, CancellationToken cancellationToken)
@@ -179,6 +189,11 @@ namespace API.Controllers
             return Ok(clientWayBill);
         }
         
+        /// <summary>
+        /// Returns list of waybills
+        /// </summary>
+        /// <param name="searchInfo">Waybill search info</param>
+        /// <param name="cancellationToken"></param>
         [HttpGet]
         [Route("")]
         public async Task<IActionResult> SearchPlacesAsync([FromQuery]Client.WayBillSearchInfo searchInfo,
